@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { sumProducts } from 'src/app/utils/sum-products';
 import { Product } from '../product.model';
 import { ProductsService } from '../products.service';
+
 import { Store } from '@ngrx/store';
 
 @Component({
