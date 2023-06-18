@@ -60,7 +60,7 @@ export class ProductEffects implements OnInitEffects {
                     .update(product)
                     .pipe(
                         map(() =>
-                            ProductsAPIActions.productUpdatedSuccess({ product })
+                            ProductsAPIActions.productUpdatedSuccess({ update: { id: product.id, changes: product} })
                         ),
                         catchError(
                             (error) => of(ProductsAPIActions.productUpdatedFail({ message: error}))
