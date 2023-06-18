@@ -5,7 +5,7 @@ import { ProductsService } from '../products.service';
 
 import { Store } from '@ngrx/store';
 import { ProductsAPIActions, ProductsPageActions } from '../state/products.actions';
-import { state } from '@angular/animations';
+import { selectProducts, selectProductsLoading, selectProductsShowProductCode, selectProductsTotal } from '../state/products.selectors';
 
 @Component({
   selector: 'app-products-page',
@@ -13,16 +13,10 @@ import { state } from '@angular/animations';
   styleUrls: ['./products-page.component.css'],
 })
 export class ProductsPageComponent {
-  products$ = this.store.select(
-    (state: any) => state.products.products
-  );
-  total = 0;
-  loading$ = this.store.select(
-    (state: any) => state.products.loading
-  );
-  showProductCode$ = this.store.select(
-    (state: any) => state.products.showProductCode
-  );
+  products$ = this.store.select(selectProducts);
+  total$ = this.store.select(selectProductsTotal);
+  loading$ = this.store.select(selectProductsLoading);
+  showProductCode$ = this.store.select(selectProductsShowProductCode);
   errorMessage = '';
 
   constructor(private productsService: ProductsService, private store: Store) {
@@ -39,8 +33,7 @@ export class ProductsPageComponent {
       next: (products) => {
         this.store.dispatch(
           ProductsAPIActions.productsLoadedSuccess({ products })
-        );
-        this.total = sumProducts(products);
+        );        
       },
       error: (error) => (this.errorMessage = error),
     });
