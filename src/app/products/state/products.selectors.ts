@@ -19,6 +19,11 @@ export const selectProductsShowProductCode = createSelector(
     (productsState) => productsState.showProductCode
 );
 
+export const selectProductsErrorMessage = createSelector(
+    selectProductState,
+    (productsState) => productsState.errorMessage
+);
+
 export const selectProductsTotal = createSelector(
     selectProducts,
     sumProducts // simplify since this matches signeture: (products) => sumProducts(products)
