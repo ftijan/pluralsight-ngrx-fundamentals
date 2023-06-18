@@ -1,4 +1,4 @@
-<div *ngIf="(product$ | async) !== undefined; else loadingElement">
+<div *ngIf="(loading$ | async) === false; else loadingElement">
   <app-product-edit
     (add)="addProduct($event)"
     (update)="updateProduct($event)"
