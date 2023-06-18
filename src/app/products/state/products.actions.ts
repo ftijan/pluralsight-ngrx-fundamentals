@@ -17,11 +17,11 @@ export const ProductsAPIActions = createActionGroup({
     events: {
         'Products Loaded Success': props<{ products: Product[] }>(),
         'Products Loaded Fail': props<{ message: string }>(),
-        'Products Added Success': props<{ product: Product }>(),
-        'Products Added Fail': props<{ message: string }>(),
-        'Products Updated Success': props<{ product: Product }>(),
-        'Products Updated Fail': props<{ message: string }>(),
-        'Products Deleted Success': props<{ id: number }>(),
-        'Products Deleted Fail': props<{ message: string }>(),
+        'Product Added Success': props<{ product: Product }>(),
+        'Product Added Fail': props<{ message: string }>(),
+        'Product Updated Success': props<{ product: Product }>(),
+        'Product Updated Fail': props<{ message: string }>(),
+        'Product Deleted Success': props<{ id: number }>(),
+        'Product Deleted Fail': props<{ message: string }>(),
     }
 });
