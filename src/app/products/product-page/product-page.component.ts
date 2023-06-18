@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Product } from '../product.model';
 import { ProductsService } from '../products.service';
+import { Store } from '@ngrx/store';
+import { selectProductById } from '../state/products.selectors';
 
 @Component({
   selector: 'app-product-page',
@@ -10,22 +12,16 @@ import { ProductsService } from '../products.service';
   styleUrls: ['./product-page.component.css'],
 })
 export class ProductPageComponent {
-  product$: Observable<Product> | undefined;
+  product$ = this.store.select(
+    selectProductById
+  );
 
   constructor(
     private productsService: ProductsService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private store: Store
   ) {}
-
-  ngOnInit() {
-    const productId = parseInt(this.activatedRoute.snapshot.params['id']);
-    this.getProduct(productId);
-  }
-
-  getProduct(id: number) {
-    this.product$ = this.productsService.getById(id);
-  }
 
   addProduct(product: Product) {
     this.productsService.add(product).subscribe(this.goToProductsPage);

@@ -18,10 +18,6 @@ export class ProductsPageComponent {
 
   constructor(private store: Store) {
     this.store.subscribe((store) => console.log(store));
-  }
-
-  ngOnInit() {    
-    this.store.dispatch(ProductsPageActions.loadProducts());
   }  
 
   toggleShowProductCode() {

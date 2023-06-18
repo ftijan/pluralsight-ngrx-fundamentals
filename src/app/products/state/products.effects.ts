@@ -1,11 +1,16 @@
 import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { Actions, OnInitEffects, createEffect, ofType } from "@ngrx/effects";
 import { ProductsService } from "../products.service";
 import { ProductsAPIActions, ProductsPageActions } from "./products.actions";
 import { catchError, concatMap, exhaustMap, map, mergeMap, of } from "rxjs";
 
 @Injectable()
-export class ProductEffects {
+export class ProductEffects implements OnInitEffects {
+
+    ngrxOnInitEffects() {
+        return ProductsPageActions.loadProducts();
+    }
+
     constructor(
         private actions$: Actions,
         private productsService: ProductsService
